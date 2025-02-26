@@ -1,0 +1,439 @@
+:root {
+    --bg-color: #f0f0f0;
+    --dot-color: #f0e10d;
+    --text-color: #333;
+    --container-bg: rgba(255, 255, 255, 0.9);
+    --message-user-bg: #333;
+    --message-user-text: white;
+    --message-ai-bg: #e5e5e5;
+    --message-ai-text: #333;
+    --input-bg: white;
+    --input-border: #cbd5e0;
+    --modal-bg: white;
+    --file-drop-bg: #f7fafc;
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;  /* Darker background */
+    --dot-color: #2a2a2a; /* Slightly lighter dots for contrast */
+    --text-color: #ffffff;
+    --container-bg: rgba(30, 30, 30, 0.9);
+    --message-user-bg: #2d3748;
+    --message-user-text: white;
+    --message-ai-bg: #4a5568;
+    --message-ai-text: white;
+    --input-bg: #2d3748;
+    --input-border: #4a5568;
+    --modal-bg: #2d3748;
+    --file-drop-bg: #2d3748;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
+    background-size: 20px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    transition: background-color 0.3s;
+}
+#chat-container {
+width: 100%;
+max-width: 1200px;  /* Changed from 800px to 1200px */
+height: 90vh;
+background-color: var(--container-bg);
+backdrop-filter: blur(8px);
+border-radius: 12px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+overflow: hidden;
+display: flex;
+flex-direction: column;
+}
+    #chat-history {
+        flex-grow: 1;
+        overflow-y: auto;
+        padding: 1rem;
+        scrollbar-width: thin;
+        scrollbar-color: #cbd5e0 #edf2f7;
+    }
+    #chat-history::-webkit-scrollbar {
+        width: 8px;
+    }
+    #chat-history::-webkit-scrollbar-track {
+        background: #edf2f7;
+    }
+    #chat-history::-webkit-scrollbar-thumb {
+        background-color: #cbd5e0;
+        border-radius: 20px;
+        border: 3px solid #edf2f7;
+    }
+    .message {
+        margin-bottom: 1rem;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        max-width: 80%;
+        animation: fadeIn 0.5s;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .user-message {
+        background-color: #333;
+        color: white;
+        align-self: flex-end;
+        margin-left: auto;
+    }
+    .ai-message {
+        background-color: #e5e5e5;
+        color: #333;
+    }
+    .error-message {
+        background-color: #ffdddd;
+        color: #ff0000;
+        font-weight: bold;
+    }
+    #debug-info {
+        display: none;
+    }
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+    }
+    .animate-pulse {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    @media (max-width: 640px) {
+        #chat-container {
+            height: 100vh;
+            border-radius: 0;
+        }
+    }
+    .submission-container {
+        width: 100%;
+        max-width: 800px;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        margin: 2rem auto;
+    }
+    .file-drop-zone {
+        border: 2px dashed #cbd5e0;
+        border-radius: 8px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+    .file-drop-zone.drag-over {
+        border-color: #4a5568;
+        background-color: #f7fafc;
+    }
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        background-color: var(--container-bg);
+        padding: 2rem;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 400px;
+    }
+    .message.user-message {
+    background-color: var(--message-user-bg);
+    color: var(--message-user-text);
+}
+
+.message.ai-message {
+    background-color: var(--message-ai-bg);
+    color: var(--message-ai-text);
+}
+
+textarea#user-input {
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border-color: var(--input-border);
+}
+
+.modal-content {
+    background-color: var(--modal-bg);
+    color: var(--text-color);
+}
+
+.file-drop-zone {
+    background-color: var(--file-drop-bg);
+    color: var(--text-color);
+}
+
+input[type="text"],
+input[type="password"] {
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border-color: var(--input-border);
+}
+* {
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 1rem;
+}
+
+header h1 {
+margin-right: auto; /* Pushes the title to the left */
+}
+
+/* Add more space between title and model select */
+#model-select {
+margin-left: 8rem; /* Adds significant space after the title */
+}
+@media (max-width: 640px) {
+#chat-container {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    border-radius: 0;
+    max-width: none;
+}
+
+/* Adjust header for mobile */
+header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0.75rem;
+}
+
+header .flex {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+}
+
+/* Make buttons and select full width on mobile */
+header select,
+header button,
+#send-button,
+#export-button {
+    width: 100%;
+    margin: 0.25rem 0;
+}
+
+/* Adjust message bubbles for mobile */
+.message {
+    max-width: 90%;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+/* Adjust input area for mobile */
+.p-4.border-t {
+    padding: 0.75rem;
+}
+
+#user-input {
+    font-size: 16px; /* Prevents zoom on iOS */
+}
+
+/* Modal adjustments for mobile */
+.modal-content {
+    width: 95%;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+/* Submission page adjustments */
+.submission-container {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    min-height: 100vh;
+}
+
+/* File drop zone adjustments */
+.file-drop-zone {
+    padding: 1rem;
+}
+
+/* Model select specific adjustments */
+#model-select {
+    margin-left: 0;
+    width: 100%;
+}
+
+/* Buttons container adjustment */
+.flex.justify-between.items-center.mt-2 {
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Make sure buttons in the bottom bar are properly spaced */
+.flex.justify-between.items-center.mt-2 button {
+    width: 100%;
+    margin: 0.25rem 0;
+}
+}
+html {
+height: -webkit-fill-available;
+}
+
+/* Mobile specific adjustments */
+@media screen and (max-width: 480px) {  /* Changed from 640px to 480px for mobile only */
+body {
+    background-image: none;
+    margin: 0;
+    padding: 0;
+}
+
+#chat-container {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    border-radius: 0;
+    max-width: none;
+}
+
+
+#chat-history {
+    flex: 1;
+    height: 0; /* Forces proper flex behavior */
+}
+
+/* Header adjustments */
+header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0.75rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+header .flex {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+}
+
+/* Make buttons and select full width on mobile */
+header select,
+header button,
+#send-button,
+#export-button {
+    width: 100%;
+    margin: 0.25rem 0;
+}
+
+/* Message bubbles adjustments */
+.message {
+    max-width: 90%;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+/* Input area adjustments */
+.p-4.border-t {
+    padding: 0.75rem;
+    background-color: var(--container-bg);
+}
+
+#user-input {
+    font-size: 16px;
+    padding: 0.75rem;
+}
+
+/* Modal adjustments */
+.modal-content {
+    width: 95%;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+/* Submission page adjustments */
+.submission-container {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    min-height: 100vh;
+}
+
+/* File drop zone adjustments */
+.file-drop-zone {
+    padding: 1rem;
+}
+
+/* Model select adjustments */
+#model-select {
+    margin-left: 0;
+    width: 100%;
+}
+
+/* Bottom buttons container adjustment */
+.flex.justify-between.items-center.mt-2 {
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Make bottom buttons full width */
+.flex.justify-between.items-center.mt-2 button {
+    width: 100%;
+    margin: 0.25rem 0;
+}
+
+/* Ensure chat page takes full height */
+#chat-page {
+    height: 100vh;
+    height: -webkit-fill-available;
+}
+
+/* Ensure submission page takes full height */
+#submission-page {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+}
+}
+.offline-mode {
+    position: relative;
+  }
+  
+  .offline-mode::after {
+    content: 'OFFLINE MODE';
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background-color: #ff4444;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    z-index: 1000;
+  }
+  
+  .offline-mode #model-select {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  
+  @media (max-width: 640px) {
+    .offline-mode::after {
+      top: auto;
+      bottom: 1rem;
+      right: 1rem;
+    }
+  }
+
+  
