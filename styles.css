@@ -14,7 +14,7 @@
 }
 
 [data-theme="dark"] {
-    --bg-color: #121212;  /* Darker background */
+    --bg-color: #121212 !important;  /* Darker background */
     --dot-color: #2a2a2a; /* Slightly lighter dots for contrast */
     --text-color: #ffffff;
     --container-bg: rgba(30, 30, 30, 0.9);
@@ -30,7 +30,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg-color);
+    background-color: #581515 !important;
     background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
     background-size: 20px 20px;
     display: flex;
@@ -388,19 +388,16 @@ header button,
     gap: 0.5rem;
 }
 
-/* Make bottom buttons full width */
 .flex.justify-between.items-center.mt-2 button {
     width: 100%;
     margin: 0.25rem 0;
 }
 
-/* Ensure chat page takes full height */
 #chat-page {
     height: 100vh;
     height: -webkit-fill-available;
 }
 
-/* Ensure submission page takes full height */
 #submission-page {
     min-height: 100vh;
     min-height: -webkit-fill-available;
@@ -436,4 +433,308 @@ header button,
     }
   }
 
-  
+.upload-btn {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.upload-btn:hover {
+    background: #45a049;
+}
+
+.uploaded-image {
+    max-width: 300px;
+    max-height: 300px;
+    border-radius: 8px;
+    margin-top: 8px;
+    border: 2px solid #ddd;
+    display: block;
+}
+
+.image-container {
+    margin: 8px 0;
+    padding: 5px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+/* Dark mode support */
+[data-theme="dark"] .upload-btn {
+    background: #2d3748;
+}
+
+[data-theme="dark"] .image-container {
+    background: #2d3748;
+    border: 1px solid #4a5568;
+}
+/* Mobile-first styles (applied below 768px) */
+@media screen and (max-width: 768px) {
+    body {
+        background-image: none;
+        background-color: var(--bg-color);
+        padding: 0;
+        height: 100vh;
+        height: -webkit-fill-available;
+        overflow: hidden;
+    }
+
+    #chat-container {
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        border-radius: 0;
+        max-width: none;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Header improvements */
+    header {
+        padding: 0.5rem;
+        flex-direction: column;
+        gap: 0.5rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    header h1 {
+        font-size: 1.2rem;
+        margin: 0;
+        padding: 0.5rem 0;
+        text-align: center;
+    }
+
+    header .flex {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    /* Model select and buttons */
+    #model-select {
+        margin: 0;
+        width: 100%;
+        max-width: 100%;
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+
+    header button {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+        width: auto;
+        flex-grow: 1;
+    }
+
+    /* Chat history area */
+    #chat-history {
+        flex: 1;
+        padding: 0.75rem;
+        overflow-y: auto;
+        height: 0; /* Forces proper flex behavior */
+    }
+
+    /* Message bubbles */
+    .message {
+        max-width: 85%;
+        padding: 0.75rem;
+        margin-bottom: 0.75rem;
+        font-size: 0.95rem;
+        line-height: 1.4;
+        border-radius: 1rem;
+    }
+
+    .user-message {
+        margin-left: auto;
+        margin-right: 0;
+        border-bottom-right-radius: 0.25rem;
+    }
+
+    .ai-message {
+        margin-right: auto;
+        margin-left: 0;
+        border-bottom-left-radius: 0.25rem;
+    }
+
+    /* Input area */
+    .p-4.border-t {
+        padding: 0.75rem;
+        background-color: var(--container-bg);
+        position: sticky;
+        bottom: 0;
+    }
+
+    #user-input {
+        font-size: 16px;
+        padding: 0.75rem;
+        min-height: 60px;
+        max-height: 120px;
+    }
+
+    /* Buttons */
+    #send-button, 
+    #export-logs-btn,
+    #image-upload-btn {
+        width: 100%;
+        margin: 0.25rem 0;
+        padding: 0.75rem;
+        font-size: 1rem;
+    }
+
+    /* Submission page */
+    .submission-container {
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+        min-height: 100vh;
+        padding: 1rem;
+    }
+
+    .file-drop-zone {
+        padding: 1rem;
+    }
+
+    /* Bottom buttons container */
+    .flex.justify-between.items-center.mt-2 {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    /* Modal adjustments */
+    .modal-content {
+        width: 95%;
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    /* Image handling */
+    .image-container {
+        max-width: 100%;
+        margin: 0.5rem 0;
+    }
+
+    .uploaded-image {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Offline mode indicator */
+    .offline-mode::after {
+        top: auto;
+        bottom: 1rem;
+        right: 1rem;
+        font-size: 0.8rem;
+        padding: 0.3rem 0.6rem;
+    }
+}
+
+/* Additional mobile-specific improvements */
+@media screen and (max-width: 480px) {
+    /* Even more compact header */
+    header {
+        padding: 0.5rem 0.25rem;
+    }
+    
+    header h1 {
+        font-size: 1.1rem;
+        padding: 0.25rem 0;
+    }
+    
+    /* More compact message bubbles */
+    .message {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+    
+    /* More compact input area */
+    #user-input {
+        min-height: 50px;
+        padding: 0.5rem;
+    }
+    
+    /* Smaller buttons */
+    #send-button, 
+    #export-logs-btn,
+    #image-upload-btn {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Adjust spacing */
+    .p-4.border-t {
+        padding: 0.5rem;
+    }
+    
+    /* Submission form adjustments */
+    .submission-container {
+        padding: 0.75rem;
+    }
+    
+    .file-drop-zone {
+        padding: 0.75rem;
+    }
+}
+
+/* Dark mode adjustments for mobile */
+[data-theme="dark"] {
+    #chat-container {
+        background-color: #1a1a1a;
+    }
+    
+    #user-input {
+        background-color: #2d2d2d;
+        color: #f0f0f0;
+    }
+    
+    .message.ai-message {
+        background-color: #333;
+        color: #f0f0f0;
+    }
+    
+    .message.user-message {
+        background-color: #0066cc;
+        color: white;
+    }
+}
+
+/* New: Floating action button for mobile */
+#mobile-send-button {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    #mobile-send-button {
+        display: block;
+        position: fixed;
+        bottom: 5rem;
+        right: 1rem;
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 50%;
+        background-color: #333;
+        color: white;
+        border: none;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        z-index: 50;
+        font-size: 1.5rem;
+    }
+    
+    #mobile-send-button:active {
+        transform: scale(0.95);
+    }
+    
+    /* Hide desktop send button on mobile */
+    #send-button {
+        display: none;
+    }
+}
