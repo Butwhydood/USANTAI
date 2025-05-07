@@ -1575,7 +1575,7 @@ async function getAIResponse(prompt, retries = 3) {
             const data = await response.json();
             let aiResponse;
             
-            if (model.includes('mistral')) {
+            if (model.includes('Mixtral')) {
                 aiResponse = data[0]?.generated_text;
             } else if (model.includes('Mixtral')) {
                 aiResponse = data[0]?.generation || data[0]?.generated_text;
