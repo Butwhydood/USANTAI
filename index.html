@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>USANTAI</title>
     <script>
-        // Check if service worker is supported
         if ('serviceWorker' in navigator) {
           window.addEventListener('load', () => {
             navigator.serviceWorker.register('/service-worker.js')
@@ -23,7 +22,6 @@
     <link rel="icon" type="image/png" sizes="512x512" href="icon-512x512.png">
 </head>
 <body class="bg-gray-100">
-    <!-- Main Chat Page -->
     <div id="login-modal" class="modal">
         <div class="modal-content">
             <h2 class="text-2xl font-bold mb-4">Login</h2>
@@ -53,14 +51,13 @@
                         <option value="google/gemma-7b-it">Gemma-7B</option>
                         <option value="meta-llama/Llama-2-13b-chat-hf">Llama-2-13B</option>
                         <option value="mistralai/Mistral-7B-Instruct-v0.2">Mistral-7B</option>
-                        <option value="deepseek-ai/DeepSeek-R1">DeepSeek-R1</option>
                     </select>
                     <button id="theme-toggle" class="px-3 py-1 rounded-md bg-gray-700 hover:bg-gray-600 transition duration-300">
                         🌙
                     </button>
-                    <button id="logout-button" class="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600 transition duration-300">
+                    <!-- <button id="logout-button" class="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600 transition duration-300">
                         Logout
-                    </button>
+                    </button> -->
                     <button id="submit-button" onclick="showSubmissionPage()" class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600 transition duration-300">
                         Feedback
                     </button>
@@ -72,7 +69,7 @@
                 <textarea id="user-input" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500" placeholder="Type your message here..." rows="3"></textarea>
                 <div class="flex justify-between items-center mt-2">
                     <button id="send-button" class="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition duration-300">Send</button>
-                    <button id="export-button" class="bg-gray-300 text-black px-4 py-2 rounded-md hover:bg-gray-400 transition duration-300">Export Chat</button>
+                    <!-- <button id="export-button" class="bg-gray-300 text-black px-4 py-2 rounded-md hover:bg-gray-400 transition duration-300">Export Chat</button> -->
                 </div>
             </div>
         </div>
@@ -84,7 +81,6 @@
         </div>
     </div>
 
-    <!-- Submission Page -->
     <div id="submission-page" class="hidden">
         <div class="submission-container">
             <div class="flex justify-between items-center mb-6">
