@@ -1056,7 +1056,7 @@ if (document.readyState === 'complete') {
 "uniform": [
         {
             text: "**SHS Uniform Policy**:\n- Official uniform required\n- PE uniform must be worn depending on your schedule\n- ID must be visible",
-            image: "uniform.jpg",
+            image: "USANTAI/uniform.jpg",
             imageAlt: "uniform.jpg"
         },
 
