@@ -1785,7 +1785,7 @@ function isModelAvailable(model) {
         testDiv.innerHTML = "<h3>Image Access Test</h3>";
         
         testImages.forEach(img => {
-            const imgPath = `./images/${img}`;
+            const imgPath = `${img}`;
             const imgEl = document.createElement('img');
             imgEl.src = imgPath;
             imgEl.alt = img;
