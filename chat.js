@@ -1353,7 +1353,6 @@ if (document.readyState === 'complete') {
 
             if (message.image) {
                 const imagePath = message.isDataUrl ? message.image : `${message.image}`;
-                console.log("Image path:", imagePath);
                 
                 displayContent += `
                     <div class="image-container" style="margin-top: 10px; max-width: 100%;">
