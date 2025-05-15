@@ -1068,7 +1068,7 @@ if (document.readyState === 'complete') {
 
     ],
     "dress code": {
-        text: "Same as uniform policy! Requirements:\n- No jeans\n- Plain shoes\n- Neat appearance",
+        text: "Same as uniform policy! Requirements:\n- No indecent attire\n- Black shoes/ Rubber shoes\n- Neat appearance",
         image: "uniform copy.jpg", 
         imageAlt: "USANT Dress Code Guide"
     },
