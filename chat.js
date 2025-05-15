@@ -1352,7 +1352,7 @@ if (document.readyState === 'complete') {
             
 
             if (message.image) {
-                const imagePath = message.isDataUrl ? message.image : `${message.image}`;
+                const imagePath = message.isDataUrl ? message.image : `USANTAI/${message.image}`;
                 console.log("Image path:", imagePath);
                 
                 displayContent += `
