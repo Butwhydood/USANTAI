@@ -1358,7 +1358,7 @@ if (document.readyState === 'complete') {
                 displayContent += `
                     <div class="image-container" style="margin-top: 10px; max-width: 100%;">
                         <img 
-                            src="${imagePath}" 
+                            src="${message.image}" 
                             alt="${message.imageAlt || 'Image'}" 
                             style="max-width: 100%; height: auto; display: block; border: 1px solid #ddd; border-radius: 4px;"
                             onerror="console.error('Failed to load image:', this.src); this.style.display='none'; this.insertAdjacentHTML('afterend', '<p style=\'color:red;\'>Image failed to load: ' + this.alt + '</p>');"
