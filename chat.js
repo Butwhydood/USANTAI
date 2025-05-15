@@ -1352,7 +1352,7 @@ if (document.readyState === 'complete') {
             
 
             if (message.image) {
-                const imagePath = message.isDataUrl ? message.image : `images/${message.image}`;
+                const imagePath = message.isDataUrl ? message.image : `${message.image}`;
                 console.log("Image path:", imagePath);
                 
                 displayContent += `
