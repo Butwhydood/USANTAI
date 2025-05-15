@@ -1814,12 +1814,7 @@ function isModelAvailable(model) {
         console.log("Current script path:", currentScript);
         
         // Test different relative paths
-        const testPaths = [
-            './images/uniform.jpg',
-            '/images/uniform.jpg',
-            '../images/uniform.jpg',
-            'images/uniform.jpg',
-        ];
+
         
         console.log("Testing image paths:");
         testPaths.forEach(path => {
