@@ -998,7 +998,13 @@ if (document.readyState === 'complete') {
     "For top 10 Grade 10 completers:\n- 1st: 100% free tuition\n- 2nd: 75%\n- 3rd: 50%\n- 4th-10th: 25%",
     "Academic excellence award:\n• Requires maintaining grades\n• Automatic consideration"
 ],
-
+"dona felisa": [
+    "For top 10 Grade 10 completers:\n- 1st: 100% free tuition\n- 2nd: 75%\n- 3rd: 50%\n- 4th-10th: 25%",
+    "Academic excellence award:\n• Requires maintaining grades\n• Automatic consideration"
+],
+"what is usant?": [
+    "The University of Saint Anthony is a private, non-sectarian and non-profit educational institution in the Philippines. It was founded in 1947 by Dr. Santiago G. Ortega. USANT is located at Iriga City, Camarines Sur province, Philippines.",
+],
 "how to get doña felisa": "Be top 10 in Grade 10 at USANT. No separate application!", // Accent handled
 "felisa ortega scholarship": "Assuming you mean *Doña Felisa*—it's for top-performing Grade 10 students.", // Misremembered name
 
@@ -1125,7 +1131,30 @@ if (document.readyState === 'complete') {
         "Rep your school with maroon & gold—the university's traditional colors."
     ],
     "hymn": [
-        `All the USANT voices sing\nIn accents loud and clear\nAll the USANT echoes ring\nFor the school we love so dear\n\nHere we march in search of a song\nPass all barriers and all hills\nHere to start and here to stay long\nAt the end of winding rill\n\nWe are here, yes with delight\nAnd we shall serve where we stand\nWe are proud of our USANT\nLeading school of Bicol Land\n\nDear USANT oh our dear USANT\nWe sing in praise of thee\nFor we know your future's bright\nIt's the school for you and me\n\nFor you know that you'll never die\nAnd you'll live in every heart\nAnd the world will cheer Mabuhay\nLet us join and make a start.`
+        `All the USANT voices sing
+        In accents loud and clear
+        All the USANT echoes ring
+        For the school we love so dear
+        
+        Here we march in search of a song
+        Pass all barriers and all hills
+        Here to start and here to stay long
+        At the end of winding rill
+        
+        We are here, yes with delight
+        And we shall serve where we stand
+        We are proud of our USANT
+        Leading school of Bicol Land
+        
+        Dear USANT oh our dear USANT
+        We sing in praise of thee
+        For we know your future's bright
+        It's the school for you and me
+        
+        For you know that you'll never die
+        And you'll live in every heart
+        And the world will cheer Mabuhay
+        Let us join and make a start.`
     ],
     "mace": "The University Mace symbolizes authority in ceremonies. Its shaft has three rings marking the institution's growth from academy to college to university. The seal features Mt. Iriga, Lakes Buhi and Bato, and the flame of knowledge representing Pietas, Integritas, Sapientia.",
 
@@ -1575,7 +1604,7 @@ async function getAIResponse(prompt, retries = 3) {
             const data = await response.json();
             let aiResponse;
             
-            if (model.includes('Mixtral')) {
+            if (model.includes('mistral')) {
                 aiResponse = data[0]?.generated_text;
             } else if (model.includes('Mixtral')) {
                 aiResponse = data[0]?.generation || data[0]?.generated_text;
@@ -1777,33 +1806,6 @@ function isModelAvailable(model) {
             
             fileInput.value = '';
         });
-    }
-    function testImageAccess() {
-        const testImages = ["uniform.jpg", "Images/bLxcjh3.png", "uniform-guide.jpg", "bLxcjh3.png", "MIS-removebg-preview.png"];
-        const testDiv = document.createElement('div');
-        testDiv.style.cssText = "position: fixed; bottom: 10px; right: 10px; background: white; border: 1px solid black; padding: 10px; z-index: 9999;";
-        testDiv.innerHTML = "<h3>Image Access Test</h3>";
-        
-        testImages.forEach(img => {
-            const imgPath = `./images/${img}`;
-            const imgEl = document.createElement('img');
-            imgEl.src = imgPath;
-            imgEl.alt = img;
-            imgEl.style.width = "100px";
-            imgEl.style.display = "block";
-            imgEl.style.margin = "5px";
-            imgEl.onerror = () => {
-                console.error(`Failed to load image: ${imgPath}`);
-                imgEl.insertAdjacentHTML('afterend', `<p style="color:red">Failed: ${imgPath}</p>`);
-            };
-            imgEl.onload = () => {
-                console.log(`Successfully loaded: ${imgPath}`);
-                imgEl.insertAdjacentHTML('afterend', `<p style="color:green">Success: ${imgPath}</p>`);
-            };
-            testDiv.appendChild(imgEl);
-        });
-        
-        document.body.appendChild(testDiv);
     }
     function debugImagePaths() {
         // Current script location
