@@ -1352,7 +1352,7 @@ if (document.readyState === 'complete') {
             
 
             if (message.image) {
-                const imagePath = message.isDataUrl ? message.image : `USANTAI/${message.image}`;
+                const imagePath = message.isDataUrl ? message.image : `${message.image}`;
                 console.log("Image path:", imagePath);
                 
                 displayContent += `
@@ -1814,7 +1814,6 @@ function isModelAvailable(model) {
         console.log("Current script path:", currentScript);
         
         // Test different relative paths
-
         
         console.log("Testing image paths:");
         testPaths.forEach(path => {
